@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mithra Logistics - Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a.active {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Service Overview */
+        .service-overview {
+            background: white;
+            margin: 3rem 0;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .service-overview h2 {
+            color: #1e3c72;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-overview p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-subtitle {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .service-content {
+            padding: 2rem;
+        }
+
+        .service-content p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .service-features li {
+            color: #555;
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #ff6b35;
+            font-weight: bold;
+        }
+
+        .service-btn {
+            background: #ff6b35;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .service-btn:hover {
+            background: #e55a2b;
+            transform: translateY(-2px);
+        }
+
+        /* Process Section */
+        .process-section {
+            background: white;
+            margin: 3rem 0;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .process-section h2 {
+            color: #1e3c72;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1e3c72, #ff6b35);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .process-step h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+
+        .process-step p {
+            color: #666;
+        }
+
+        /* Industries Section */
+        .industries-section {
+            background: #f8f9fa;
+            margin: 3rem 0;
+            padding: 3rem;
+            border-radius: 10px;
+        }
+
+        .industries-section h2 {
+            color: #1e3c72;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .industry-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .industry-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .industry-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .industry-item h3 {
+            color: #1e3c72;
+            font-size: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 10px;
+            margin: 3rem 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #ff6b35;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #e55a2b;
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #1e3c72;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #ff6b35;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: #ff6b35;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #888;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #1e3c72;
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-overview {
+                padding: 2rem 1.5rem;
+            }
+
+            .process-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">🚚 Mithra Logistics</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="data-portal.html">Data Portal</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="mobile-menu" onclick="toggleMenu()">☰</button>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h1>Our Logistics Services</h1>
+        <p>Comprehensive solutions designed to meet all your transportation and supply chain needs</p>
+    </div>
+
+    <div class="container">
+        <div class="service-overview">
+            <h2>Complete Logistics Solutions</h2>
+            <p>From local deliveries to global supply chain management, Mithra Logistics offers a full spectrum of services designed to optimize your operations, reduce costs, and improve efficiency. Our integrated approach ensures seamless coordination across all aspects of your logistics needs.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">🚛</div>
+                    <h3>Ground Transportation</h3>
+                    <div class="service-subtitle">Reliable trucking across all routes</div>
+                </div>
+                <div class="service-content">
+                    <p>Comprehensive ground transportation services with modern fleet and experienced drivers ensuring safe, timely delivery of your cargo.</p>
+                    <ul class="service-features">
+                        <li>Real-time GPS tracking</li>
+                        <li>Temperature-controlled options</li>
+                        <li>LTL and FTL services</li>
+                        <li>Express delivery options</li>
+                        <li>Dedicated route planning</li>
+                    </ul>
+                    <a href="contact.html" class="service-btn">Get Quote</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">✈️</div>
+                    <h3>Air Freight</h3>
+                    <div class="service-subtitle">Fast global air cargo solutions</div>
+                </div>
+                <div class="service-content">
+                    <p>Rapid air freight services connecting you to major destinations worldwide with priority handling and expedited customs clearance.</p>
+                    <ul class="service-features">
+                        <li>Same-day and next-day delivery</li>
+                        <li>International air cargo</li>
+                        <li>Customs brokerage included</li>
+                        <li>Dangerous goods certified</li>
+                        <li>Charter flight options</li>
+                    </ul>
+                    <a href="contact.html" class="service-btn">Get Quote</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">🚢</div>
+                    <h3>Ocean Freight</h3>
+                    <div class="service-subtitle">Cost-effective sea transportation</div>
+                </div>
+                <div class="service-content">
+                    <p>Efficient ocean freight services for bulk shipments with comprehensive port-to-port and door-to-door delivery options.</p>
+                    <ul class="service-features">
+                        <li>Full Container Load (FCL)</li>
+                        <li>Less than Container Load (LCL)</li>
+                        <li>Roll-on/Roll-off (RoRo)</li>
+                        <li>Project cargo handling</li>
+                        <li>Marine insurance coverage</li>
+                    </ul>
+                    <a href="contact.html" class="service-btn">Get Quote</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">📦</div>
+                    <h3>Warehousing & Distribution</h3>
+                    <div class="service-subtitle">Modern storage and fulfillment</div>
+                </div>
+                <div class="service-content">
+                    <p>State-of-the-art warehouse facilities with advanced inventory management and order fulfillment capabilities.</p>
+                    <ul class="service-features">
+                        <li>Climate-controlled storage</li>
+                        <li>Automated inventory systems</li>
+                        <li>Pick, pack & ship services</li>
+                        <li>Cross-docking capabilities</li>
+                        <li>24/7 security monitoring</li>
+                    </ul>
+                    <a href="contact.html" class="service-btn">Get Quote</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">🏭</div>
+                    <h3>Supply Chain Management</h3>
+                    <div class="service-subtitle">End-to-end optimization</div>
+                </div>
+                <div class="service-content">
+                    <p>Comprehensive supply chain solutions that streamline your operations from procurement to final delivery.</p>
+                    <ul class="service-features">
+                        <li>Vendor management</li>
+                        <li>Demand forecasting</li>
+                        <li>Inventory optimization</li>
+                        <li>Risk management</li>
+                        <li>Performance analytics</li>
+                    </ul>
+                    <a href="contact.html" class="service-btn">Get Quote</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">📊</div>
+                    <h3>Logistics Analytics</h3>
+                    <div class="service-subtitle">Data-driven insights</div>
+                </div>
+                <div class="service-content">
+                    <p>Advanced analytics and reporting tools to optimize your logistics operations and make informed business decisions.</p>
+                    <ul class="service-features">
+                        <li>Real-time dashboards</li>
+                        <li>Performance metrics</li>
+                        <li>Cost analysis reports</li>
+                        <li>Route optimization</li>
+                        <li>Predictive analytics</li>
+                    </ul>
+                    <a href="data-portal.html" class="service-btn">Access Portal</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="process-section">
+            <h2>How We Work</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Consultation</h3>
+                    <p>We analyze your logistics needs and develop a customized solution strategy.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Planning</h3>
+                    <p>Our experts create detailed logistics plans optimized for efficiency and cost-effectiveness.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Execution</h3>
+                    <p>We implement the solution with careful coordination and real-time monitoring.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Optimization</h3>
+                    <p>Continuous improvement through data analysis and performance optimization.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="industries-section">
+            <h2>Industries We Serve</h2>
+            <div class="industries-grid">
+                <div class="industry-item">
+                    <div class="industry-icon">🏭</div>
+                    <h3>Manufacturing</h3>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">🛒</div>
+                    <h3>Retail & E-commerce</h3>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">🏥</div>
+                    <h3>Healthcare</h3>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">🚗</div>
+                    <h3>Automotive</h3>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">🥘</div>
+                    <h3>Food & Beverage</h3>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">💡</div>
+                    <h3>Technology</h3>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">👕</div>
+                    <h3>Fashion & Apparel</h3>
+                </div>
+                <div class="industry-item">
+                    <div class="industry-icon">🏗️</div>
+                    <h3>Construction</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Ready to Optimize Your Logistics?</h2>
+            <p>Get in touch with our experts to discuss your specific requirements and receive a customized solution proposal.</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn btn-primary">Get Free Quote</a>
+                <a href="data-portal.html" class="btn btn-secondary">Try Our Portal</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Mithra Logistics</h3>
+                <p>Your trusted partner in global logistics solutions. We deliver excellence with every shipment.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="about.html">About Us</a></p>
+                <p><a href="services.html">Services</a></p>
+                <p><a href="data-portal.html">Data Portal</a></p>
+                <p><a href="contact.html">Contact</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>📧 info@Mithra.com</p>
+                <p>📞 +1 (555) 123-4567</p>
+                <p>📍 123 Logistics Ave, Business District</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <p><a href="#">LinkedIn</a></p>
+                <p><a href="#">Twitter</a></p>
+                <p><a href="#">Facebook</a></p>
+                <p><a href="#">Instagram</a></p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Mithra Logistics. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

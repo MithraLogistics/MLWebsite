@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mithra Logistics - About Us</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a.active {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .content-section {
+            background: white;
+            margin: 3rem 0;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .content-section h2 {
+            color: #1e3c72;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .content-section p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+            text-align: justify;
+        }
+
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+
+        /* Values Section */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .value-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 4px solid #ff6b35;
+        }
+
+        .value-card h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+
+        .value-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #1e3c72;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            width: calc(50% - 2rem);
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: calc(50% + 2rem);
+            text-align: left;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .timeline-year {
+            background: #1e3c72;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            top: 1.5rem;
+            width: 12px;
+            height: 12px;
+            background: #ff6b35;
+            border-radius: 50%;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -2.5rem;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -2.5rem;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .team-member {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-member .avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #1e3c72, #ff6b35);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .team-member h3 {
+            color: #1e3c72;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member .role {
+            color: #ff6b35;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #ff6b35;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: #ff6b35;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #888;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #1e3c72;
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .content-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .timeline::before {
+                left: 2rem;
+            }
+
+            .timeline-item {
+                width: calc(100% - 4rem);
+                left: 4rem !important;
+                text-align: left !important;
+            }
+
+            .timeline-item::after {
+                left: -2.5rem !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">🚚 Mithra Logistics</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="data-portal.html">Data Portal</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="mobile-menu" onclick="toggleMenu()">☰</button>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h1>About Mithra Logistics</h1>
+        <p>Pioneering excellence in global logistics solutions since 2010</p>
+    </div>
+
+    <div class="container">
+        <div class="content-section">
+            <h2>Our Story</h2>
+            <p>Founded in 2010, Mithra Logistics has grown from a small regional carrier to a globally recognized logistics powerhouse. Our journey began with a simple mission: to provide reliable, efficient, and cost-effective logistics solutions that help businesses thrive in an interconnected world.</p>
+            
+            <p>What started as a family-owned trucking company has evolved into a comprehensive logistics network spanning 25 countries and serving over 500 satisfied clients. Our commitment to innovation, customer service, and operational excellence has been the driving force behind our remarkable growth.</p>
+            
+            <div class="two-column">
+                <div>
+                    <h3 style="color: #1e3c72; margin-bottom: 1rem;">Our Mission</h3>
+                    <p>To deliver world-class logistics solutions that enable our clients to focus on their core business while we handle the complexities of global supply chain management with precision, reliability, and innovation.</p>
+                </div>
+                <div>
+                    <h3 style="color: #1e3c72; margin-bottom: 1rem;">Our Vision</h3>
+                    <p>To be the most trusted and innovative logistics partner globally, setting new standards for efficiency, sustainability, and customer satisfaction in the transportation and supply chain industry.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Our Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="icon">🤝</div>
+                    <h3>Reliability</h3>
+                    <p>We deliver on our promises with consistent, dependable service that our clients can count on every time.</p>
+                </div>
+                <div class="value-card">
+                    <div class="icon">⚡</div>
+                    <h3>Innovation</h3>
+                    <p>We continuously invest in cutting-edge technology and processes to stay ahead of industry trends.</p>
+                </div>
+                <div class="value-card">
+                    <div class="icon">🌟</div>
+                    <h3>Excellence</h3>
+                    <p>We strive for perfection in every aspect of our operations, from customer service to delivery performance.</p>
+                </div>
+                <div class="value-card">
+                    <div class="icon">🌱</div>
+                    <h3>Sustainability</h3>
+                    <p>We're committed to environmentally responsible practices that minimize our carbon footprint.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Our Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2010</div>
+                        <h3>The Beginning</h3>
+                        <p>Mithra Logistics was founded with just 5 trucks and a vision to revolutionize regional transportation.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2013</div>
+                        <h3>First Expansion</h3>
+                        <p>Expanded operations to cover the entire country and introduced our first warehouse facility.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2016</div>
+                        <h3>Going Global</h3>
+                        <p>Launched international services and established partnerships in 10 countries across three continents.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2019</div>
+                        <h3>Digital Innovation</h3>
+                        <p>Introduced our advanced data portal and AI-powered logistics optimization systems.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        <h3>Leading the Future</h3>
+                        <p>Now serving 25+ countries with 500+ clients and recognized as an industry leader in logistics innovation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Leadership Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="avatar">👨‍💼</div>
+                    <h3>John Anderson</h3>
+                    <div class="role">Chief Executive Officer</div>
+                    <p>20+ years of logistics industry experience, leading strategic growth and operational excellence initiatives.</p>
+                </div>
+                <div class="team-member">
+                    <div class="avatar">👩‍💼</div>
+                    <h3>Sarah Chen</h3>
+                    <div class="role">Chief Operations Officer</div>
+                    <p>Expert in supply chain optimization with a track record of implementing innovative logistics solutions.</p>
+                </div>
+                <div class="team-member">
+                    <div class="avatar">👨‍💻</div>
+                    <h3>Michael Rodriguez</h3>
+                    <div class="role">Chief Technology Officer</div>
+                    <p>Technology visionary driving digital transformation and development of our advanced data portal systems.</p>
+                </div>
+                <div class="team-member">
+                    <div class="avatar">👩‍🏫</div>
+                    <h3>Emily Johnson</h3>
+                    <div class="role">Head of Customer Success</div>
+                    <p>Dedicated to ensuring exceptional client experiences and maintaining our 99.9% customer satisfaction rate.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Mithra Logistics</h3>
+                <p>Your trusted partner in global logistics solutions. We deliver excellence with every shipment.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="about.html">About Us</a></p>
+                <p><a href="services.html">Services</a></p>
+                <p><a href="data-portal.html">Data Portal</a></p>
+                <p><a href="contact.html">Contact</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>📧 info@Mithra.com</p>
+                <p>📞 +1 (555) 123-4567</p>
+                <p>📍 123 Logistics Ave, Business District</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <p><a href="#">LinkedIn</a></p>
+                <p><a href="#">Twitter</a></p>
+                <p><a href="#">Facebook</a></p>
+                <p><a href="#">Instagram</a></p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Mithra Logistics. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
